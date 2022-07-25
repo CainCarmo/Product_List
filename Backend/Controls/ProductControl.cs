@@ -39,6 +39,11 @@ namespace Product_List.Backend.Controls
             return commands.SelectAll();
         }
 
+        public List<Product> FindByID()
+        {
+            return commands.SelectByID(ID);
+        }
+
         public Dictionary<bool, string> Edit()
         {
             return commands.Update(ID, Name, Description, int.Parse(Type), Price);
