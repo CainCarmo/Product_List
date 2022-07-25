@@ -82,7 +82,7 @@
                                     <div class="form__icon--wrapper">
                                         <i class="fa-solid fa-note-sticky"></i>
                                     </div>
-                                    <input type="text" id="product__name_include" class="form__input product__name" placeholder="Digite o nome do produto. . ." maxlength="20" required runat="server"/>
+                                    <input type="text" id="product__name_include" class="form__input product__name" placeholder="Digite o nome do produto. . ." maxlength="100" required runat="server"/>
                                 </div>
                                 <div class="underline"></div>
                             </div>
@@ -138,15 +138,15 @@
                 </div>
             </div>
             <script src="JS/events.js"></script>
-            <script src="JS/Jquey/script.js"></script>
+            <script src="JS/Jquery/script.js"></script>
             <script>
                 objDom.btnAddProduct.addEventListener('click', () => {
-                    objDom.backgroundIncludeForm.classList.add('visible')
+                    objDom.backgroundForm.classList.add('visible')
                     objDom.formIncludeProduct.classList.add('down')
                 })
 
                 objDom.iconTimes.addEventListener('click', () => {
-                    objDom.backgroundIncludeForm.classList.remove('visible')
+                    objDom.backgroundForm.classList.remove('visible')
                     objDom.formIncludeProduct.classList.remove('down')
                 })
             </script>

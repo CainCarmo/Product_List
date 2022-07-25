@@ -1,6 +1,6 @@
 ﻿/* --- Frame --- */
 
-#frame {
+#frame, #frame_remove {
     height: 230px;
     width: 400px;
     display: grid;
@@ -34,6 +34,14 @@
     justify-content: center;
 }
 
+#frame__main-remove {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    padding: .5rem;
+}
+
 #frame__warn {
     display: flex;
     align-items: center;
@@ -63,7 +71,7 @@
     transform: translateY(-5px);
 }
 
-#frame__confirmation {
+#frame__confirmation, #product__submit-remove {
     background-color: #32CD32;
 }
 
@@ -72,16 +80,12 @@
 }
 
 /* --- JS Events --- */
-
-.form--hidden.visible {
-    display: flex;
-}
-
 #frame.expand {
     animation: expand-frame .3s;
 }
 
 /* --- Animation --- */
+
 @keyframes expand-frame {
     0% {
         transform: scale(0)

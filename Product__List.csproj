@@ -73,6 +73,7 @@
     <Content Include="index.aspx" />
     <Content Include="JS\events.js" />
     <Content Include="JS\Jquery\script.js" />
+    <Content Include="LICENSE.txt" />
     <Content Include="Views\delete.aspx" />
     <Content Include="Views\edit.aspx" />
     <Content Include="Web.config" />
@@ -107,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

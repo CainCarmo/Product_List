@@ -16,7 +16,7 @@ namespace Product__List.Views
 
         protected void RemoveProduct(object sender, EventArgs e)
         {
-            product.ID = int.Parse(product_id_remove.Value);
+            product.ID = int.Parse(product__id_remove.Value);
 
             response = product.Remove();
 

@@ -17,8 +17,10 @@
     </head>
     <body>
         <form id="form__server" runat="server">
+            <a href="https://localhost:44339/index.aspx" id="return">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
             <div class="form__product" id="form__product-edit">
-                <i class="fa-solid fa-xmark"></i>
                 <section class="product__left">
                     <img class="product__img" src="https://cdn.discordapp.com/attachments/1000527264766758943/1000982988248588368/animation_form.gif" alt="Form Gif"/>
                 </section>
@@ -33,7 +35,7 @@
                         <div class="form__field product__id-box" id="product__id-edit">
                             <div class="form__field--wrapper">
                                 <div class="form__icon--wrapper">
-                                    <i class="fa-solid fa-note-sticky"></i>
+                                    <i class="fas fa-barcode"></i>
                                 </div>
                                 <input type="number" id="product__id_edit" class="form__input product__id" placeholder="Digite o ID do produto. . ." runat="server" required="required"/>
                             </div>
@@ -44,7 +46,7 @@
                                 <div class="form__icon--wrapper">
                                     <i class="fa-solid fa-note-sticky"></i>
                                 </div>
-                                <input type="text" id="product__name_edit" class="form__input product__name" placeholder="Digite o nome do produto. . ." maxlength="20"  runat="server"/>
+                                <input type="text" id="product__name_edit" class="form__input product__name" placeholder="Digite o nome do produto. . ." maxlength="100"  runat="server"/>
                             </div>
                             <div class="underline"></div>
                         </div>
@@ -112,7 +114,18 @@
                 </div>
             </div>
             <script src="../JS/events.js"></script>
-            <%--<script src="../JS/Jquery/script.js"></script>--%>
+            <script src="../JS/Jquery/script.js"></script>
+            <script>
+                objDom.btnShowMessageEdit.addEventListener('click', () => {
+                    objDom.backgroundForm.classList.add('visible')
+                    objDom.divMessage.classList.add('expand')
+                })
+                objDom.btnExitMessage.addEventListener('click', e => {
+                    objDom.backgroundForm.classList.remove('visible')
+                    objDom.divMessage.classList.remove('expand')
+                    e.preventDefault()
+                })
+            </script>
         </form>
     </body>
 </html>

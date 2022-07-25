@@ -1,18 +1,33 @@
 ﻿/* --- Reset --- */
 
-#form__edit--hidden, #form__remove--hidden {
+#return {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    transition: .3s;
+    z-index: 999;
+}
+
+#return:hover {
+    padding: .5rem;
+    border-radius: 50%;
+    background-color: #808080;
+}
+
+#form__edit--hidden {
     display: flex;
 }
 
-#product__fields-edit, #product__fields-remove {
+#product__fields-edit {
     grid-template-areas: "ID ID" "Name Price" "Type Type" "TxtArea TxtArea";
 }
 
 /* --- Form Background --- */
+
 .form--hidden {
     height: 100%;
     width: 100%;
-    position: fixed;
+    position: absolute;
     top: 0;
     display: none;
     align-items: center;
@@ -166,6 +181,7 @@
 }
 
 /* --- Icons --- */
+
 .fa-xmark {
     position: absolute;
     top: 30px;
@@ -173,6 +189,11 @@
     font-size: 1.5em;
     color: #C40;
     cursor: pointer;
+}
+
+.fa-arrow-left {
+    font-size: 1.5em;
+    color: #EDEDED;
 }
 
 /* --- Grid Area --- */
@@ -199,11 +220,11 @@
 
 /* --- JS Events --- */
 
-#form__include--hidden.visible {
+.form--hidden.visible {
     display: flex;
 }
 
-#form__product-include.down, #form__product--edit.down, #form__product--remove.down {
+#form__product-include.down {
     animation: form-down 1s;
 }
 
@@ -211,7 +232,13 @@
     color: #cc0000;
 }
 
+/*#form__include--hidden.visible {
+    display: flex;
+}*/
+
+
 /* --- Animation --- */
+
 @keyframes form-down {
     0% {
         transform: translateY(-600px);

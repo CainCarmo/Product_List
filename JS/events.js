@@ -1,55 +1,32 @@
 ﻿const objDom = {
     backgroundPage: document.querySelector('#form__server'),
-    backgroundIncludeForm: document.querySelector('#form--hidden'),
-    backgroundEditFrame: document.querySelector('#frame--hidden'),
+    backgroundForm: document.querySelector('.form--hidden'),
 
     formIncludeProduct: document.querySelector('#form__product-include'),
-    formEditProduct: document.querySelector('#form__product-edit'),
-    //formRemoveProduct: document.querySelector('#form__product--remove'),
 
     btnAddProduct: document.querySelector('#box__add'),
     btnShowMessageEdit: document.querySelector('#product__button_edit'),
-    btnShowMessageRemove: document.querySelector('#product__button_remove'),
-    //btnSubmitRemove: document.querySelector('#product__button__remove'),
-    btnExitFrameEdit: document.querySelector('#frame__exit-edit'),
+    btnShowMessageRemove: document.querySelector('#product__submit-remove'),
 
-    iconTimes: document.querySelector('.fa-xmark#include'),
+    iconTimes: document.querySelector('.fa-xmark'),
+
+    inputPrice: document.querySelector('.prouct__price'),
 
     txtareaProductDescription: document.querySelector('.product__description'),
-
-    inputPrice: document.querySelector('.product__price'),
 
     spanDescriptionLimit: document.querySelector('.form__description--limit'),
     spanDescriptionLength: document.querySelector('.form__description--length'),
 
-    divMessageEdit: document.querySelector('#frame'),
-    divMessageRemove: document.querySelector('#frame')
+    btnExitMessage: document.querySelector('#frame__exit-edit'),
+
+    divMessage: document.querySelector('#frame')
 }
 
-//objDom.btnShowMessageEdit.addEventListener('click', () => {
-//    objDom.backgroundEditFrame.classList.add('visible')
-//    objDom.divMessageEdit.classList.add('expand')
-//})
+objDom.txtareaProductDescription.addEventListener('input', () => {
+    objDom.spanDescriptionLength.innerHTML = objDom.txtareaProductDescription.value.length
 
-objDom.btnShowMessageRemove.addEventListener('click', () => {
-    objDom.backgroundEditFrame.classList.add('visible')
-    objDom.divMessageRemove.classList.add('expand')
+    if (objDom.txtareaProductDescription.value.length >= 220)
+        objDom.spanDescriptionLimit.classList.add('warn')
+    else
+        objDom.spanDescriptionLimit.classList.remove('warn')
 })
-
-//objDom.btnExitFrameEdit.addEventListener('click', () => {
-//    objDom.backgroundEditFrame.classList.remove('visible')
-//    objDom.divMessageEdit.classList.remove('expand')
-//})
-
-// -> Input
-
-//objDom.txtareaProductDescription.forEach((element, index) => {
-//    element.addEventListener('input', () => {
-//        objDom.spanDescriptionLength[index].innerHTML = element.value.length;
-
-//        if (element.value.length >= 220)
-//            objDom.spanDescriptionLimit[index].classList.add('warn')
-//        else
-//            objDom.spanDescriptionLimit[index].classList.remove('warn')
-//    })
-//})
