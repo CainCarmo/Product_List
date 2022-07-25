@@ -1,5 +1,79 @@
 ﻿/* --- Reset --- */
 
+#form__edit--hidden, #form__remove--hidden {
+    display: flex;
+}
+
+#product__fields-edit, #product__fields-remove {
+    grid-template-areas: "ID ID" "Name Price" "Type Type" "TxtArea TxtArea";
+}
+
+/* --- Form Background --- */
+.form--hidden {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .8);
+    z-index: 999;
+}
+
+/* --- Box --- */
+
+.form__product {
+    height: 80vh;
+    width: 70%;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    border-radius: 15px;
+    background-color: #FAEBD7;
+}
+
+/* === Box Left === */
+
+.product__left {
+    height: 100%;
+    width: 40%;
+    position: relative;
+    background-color: #FFF;
+    box-shadow: -10px 0px 20px rgba(0, 0, 0, .8);
+}
+
+.product__img {
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+}
+
+/* === Box Right === */
+
+.product__right {
+    height: 100%;
+    width: 60%;
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+}
+
+.product__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product__fields {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-areas: "Name Price" "Type Type" "TxtArea TxtArea";
+    gap: 15px;
+    padding: 0rem 2.5rem;
+}
+
 .form__field--wrapper {
     display: flex;
     align-items: center;
@@ -25,6 +99,23 @@
     transform: scaleX(1);
 }
 
+.product__description {
+    resize: none;
+    font-size: 1.2em;
+}
+
+.form__description--limit {
+    position: absolute;
+    bottom: -15px;
+    right: 0;
+    font-size: .9em;
+    font-weight: 600;
+}
+
+.form__description--length {
+    margin-right: 8px;
+}
+
 .underline::before {
     height: 2px;
     width: 100%;
@@ -44,83 +135,13 @@
     background-color: #D3AD7F;
 }
 
-/* --- Form Background --- */
-
-.form--hidden {
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, .8);
-    z-index: 999;
-}
-
-/* --- Box --- */
-
-#form__product {
-    height: 80vh;
-    width: 70%;
-    position: relative;
-    display: flex;
-    overflow: hidden;
-    border-radius: 15px;
-    background-color: #FAEBD7;
-}
-
-/* === Box Left === */
-
-#product__left {
-    height: 100%;
-    width: 40%;
-    position: relative;
-    background-color: #FFF;
-    box-shadow: -10px 0px 20px rgba(0, 0, 0, .8);
-}
-
-#product__img {
-    height: 100%;
-    width: 100%;
-    object-fit: fill;
-}
-
-/* === Box Right === */
-
-#product__right {
-    height: 100%;
-    width: 60%;
-    display: grid;
-    grid-template-rows: 1fr 2fr 1fr;
-}
-
-#product__header {
+.product__footer {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#product__fields {
-    height: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-areas: "Name Price" "Type Type" "TxtArea TxtArea";
-    gap: 15px;
-    padding: 0rem 2.5rem;
-}
-
-#product__description {
-    resize: none;
-}
-
-#product__footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#product__submit {
+.product__submit {
     width: 70%;
     padding: 1rem;
     font-size: 1.1em;
@@ -132,15 +153,19 @@
     cursor: pointer;
 }
 
-#product__submit:hover {
+.product__submit:hover {
     letter-spacing: 1px;
     transform: translateY(-5px);
     background-color: #000;
     color: #FFF;
 }
 
-/* --- Icons --- */
+.product__message {
+    position: absolute;
+    bottom: 17px;
+}
 
+/* --- Icons --- */
 .fa-xmark {
     position: absolute;
     top: 30px;
@@ -152,20 +177,41 @@
 
 /* --- Grid Area --- */
 
-#product__name-box { grid-area: Name; } #product__price-box { grid-area: Price; } #product__type-box { grid-area: Type; } #product__description-box { grid-area: TxtArea; }
+.product__id-box {
+    grid-area: ID;
+}
+
+.product__name-box {
+    grid-area: Name;
+}
+
+.product__price-box {
+    grid-area: Price;
+}
+
+.product__type-box {
+    grid-area: Type;
+}
+
+.product__description-box {
+    grid-area: TxtArea;
+}
 
 /* --- JS Events --- */
 
-#form__product--hidden.visible {
+#form__include--hidden.visible {
     display: flex;
 }
 
-#form__product.down {
+#form__product-include.down, #form__product--edit.down, #form__product--remove.down {
     animation: form-down 1s;
 }
 
-/* --- Animation --- */
+#form__description-include--limit.warn, #form__description-edit--limit.warn, #form__description-remove--limit.warn {
+    color: #cc0000;
+}
 
+/* --- Animation --- */
 @keyframes form-down {
     0% {
         transform: translateY(-600px);

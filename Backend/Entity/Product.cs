@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Product_List.Backend.Entity
 {
@@ -12,5 +9,6 @@ namespace Product_List.Backend.Entity
         public string Description { get; set; }
         public string Type { get; set; }
         public double Price { get; set; }
+        public DateTime RegisDate { get; set; }
     }
 }

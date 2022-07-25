@@ -1,9 +1,6 @@
-﻿using System;
-using Product_List.Backend.Entity;
+﻿using Product_List.Backend.Entity;
 using System.Collections.Generic;
 using Product_List.Backend.Models;
-using System.Linq;
-using System.Web;
 
 namespace Product_List.Backend.Controls
 {
@@ -34,27 +31,29 @@ namespace Product_List.Backend.Controls
 
         public Dictionary<bool, string> Register()
         {
-            return commands.Insert(Name, Description, Type, Price);
+            return commands.Insert(Name, Description, Type, Price, RegisDate);
         }
 
         public List<Product> FindAll()
         {
-            return commands.SelectAll("PRODUCT");
+            return commands.SelectAll();
         }
 
-        public List<Product> FindByID(int id)
+        public Dictionary<bool, string> Edit()
         {
-            return commands.SelectByID("PRODUCT", id);
+            return commands.Update(ID, Name, Description, int.Parse(Type), Price);
         }
 
-        public Dictionary<bool, string> Edit(int id)
+        public Dictionary<bool, string> Remove()
         {
-            return commands.Update(id, Name, Description, int.Parse(Type), Price);
+            return commands.Delete(ID);
         }
 
-        public Dictionary<bool, string> Remove(int id)
+        public string ToggleType(string type)
         {
-            return commands.Delete(id);
+            ProductType productType = (ProductType)int.Parse(type);
+
+            return productType.ToString();
         }
     }
 }

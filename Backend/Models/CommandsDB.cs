@@ -1,9 +1,7 @@
-﻿using Product_List.Backend.Entity;
-using System;
+﻿using System;
+using Product_List.Backend.Entity;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace Product_List.Backend.Models
 {
@@ -15,15 +13,16 @@ namespace Product_List.Backend.Models
         SqlCommand sqlCommand = new SqlCommand();
         SqlDataReader dataReader;
 
-        public Dictionary<bool, string> Insert(string name, string description, string type, double price)
+        public Dictionary<bool, string> Insert(string name, string description, string type, double price, DateTime regisdate)
         {
             ClearCollenctions();
 
-            sqlCommand.CommandText = "INSERT INTO PRODUCT VALUES (@NAME, @DESCRIPTION, @FK_TYPE_ID, @PRICE)";
+            sqlCommand.CommandText = "INSERT INTO PRODUCT VALUES (@NAME, @DESCRIPTION, @FK_TYPE_ID, @PRICE, @REGIS_DATE)";
             sqlCommand.Parameters.AddWithValue("@NAME", name);
             sqlCommand.Parameters.AddWithValue("@DESCRIPTION", description);
             sqlCommand.Parameters.AddWithValue("@FK_TYPE_ID", type);
             sqlCommand.Parameters.AddWithValue("@PRICE", price);
+            sqlCommand.Parameters.AddWithValue("@REGIS_DATE", regisdate);
 
             try
             {
@@ -44,52 +43,11 @@ namespace Product_List.Backend.Models
             return Message;
         }
 
-        public List<Product> SelectAll(string table)
+        public List<Product> SelectAll()
         {
             ClearCollenctions();
 
-            sqlCommand.CommandText = string.Format("SELECT * FROM {0}", table);
-            
-            try
-            {
-                sqlCommand.Connection = Connect();
-                dataReader = sqlCommand.ExecuteReader();
-
-                if (dataReader.HasRows)
-                {
-                    while (dataReader.Read())
-                    {
-                        lstProducts.Add(new Product() 
-                        {   
-                            ID = int.Parse(dataReader.GetValue(0).ToString()),
-                            Name = dataReader.GetValue(1).ToString(), 
-                            Description = dataReader.GetValue(2).ToString(), 
-                            Type = dataReader.GetValue(3).ToString(), 
-                            Price = Double.Parse(dataReader.GetValue(4).ToString())
-                        });
-                    }
-                }
-
-                Message.Add(true, "Sucesso!");
-            }
-            catch (SqlException ex)
-            {
-                Message.Add(false, string.Format("Erro com Banco de Dados -> {0}", ex.Message));
-            }
-            finally
-            {
-                dataReader.Close();
-                Disconnect();
-            }
-
-            return lstProducts;
-        }
-
-        public List<Product> SelectByID(string table, int id)
-        {
-            ClearCollenctions();
-
-            sqlCommand.CommandText = string.Format("SELECT * FROM {0} WHERE ID = {1}", table, id);
+            sqlCommand.CommandText = "SELECT * FROM PRODUCT";
 
             try
             {
@@ -106,7 +64,8 @@ namespace Product_List.Backend.Models
                             Name = dataReader.GetValue(1).ToString(),
                             Description = dataReader.GetValue(2).ToString(),
                             Type = dataReader.GetValue(3).ToString(),
-                            Price = Double.Parse(dataReader.GetValue(4).ToString())
+                            Price = Double.Parse(dataReader.GetValue(4).ToString()),
+                            RegisDate = DateTime.Parse(dataReader.GetValue(5).ToString())
                         });
                     }
                 }
@@ -131,11 +90,11 @@ namespace Product_List.Backend.Models
             ClearCollenctions();
 
             sqlCommand.CommandText = "UPDATE PRODUCT SET NAME = @NAME, DESCRIPTION = @DESCRIPTION, FK_TYPE_ID = @FK_TYPE_ID, PRICE = @PRICE WHERE ID = @ID";
-            sqlCommand.Parameters.AddWithValue("NAME", name);
-            sqlCommand.Parameters.AddWithValue("DESCRIPTION", description);
-            sqlCommand.Parameters.AddWithValue("FK_TYPE_ID", type);
-            sqlCommand.Parameters.AddWithValue("PRICE", price);
-            sqlCommand.Parameters.AddWithValue("ID", id);
+            sqlCommand.Parameters.AddWithValue("@NAME", name);
+            sqlCommand.Parameters.AddWithValue("@DESCRIPTION", description);
+            sqlCommand.Parameters.AddWithValue("@FK_TYPE_ID", type);
+            sqlCommand.Parameters.AddWithValue("@PRICE", price);
+            sqlCommand.Parameters.AddWithValue("@ID", id);
 
             try
             {
@@ -160,7 +119,8 @@ namespace Product_List.Backend.Models
         {
             ClearCollenctions();
 
-            sqlCommand.CommandText = string.Format("DELETE FROM PRODUCT WHERE = ID = {0}", id);
+            sqlCommand.CommandText = string.Format("DELETE FROM PRODUCT WHERE ID = @ID");
+            sqlCommand.Parameters.AddWithValue("@ID", id);
 
             try
             {
@@ -181,7 +141,7 @@ namespace Product_List.Backend.Models
             return Message;
         }
 
-        // Metodo para Limpar lstProducts e Message
+        // Método para Limpar lstProducts e Message
         private void ClearCollenctions()
         {
             lstProducts.Clear();

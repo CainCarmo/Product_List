@@ -89,26 +89,37 @@ button {
     align-items: center;
 }
 
-#box__left { justify-content: flex-start; } #box__right { justify-content: flex-end; }
+#box__left {
+    justify-content: flex-start;
+}
+
+#box__right {
+    justify-content: flex-end;
+}
 
 #box__logo {
     font-weight: 500;
 }
 
-#box__add {
+#box__add, .box__button {
     width: auto;
     padding: .5rem;
     font-size: 1em;
     font-weight: 500;
     transition: .3s all;
+    margin-left: 20px;
     border-radius: 15px;
     background-color: #32CD32;
     color: #FFF;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, .4);
 }
 
-#box__add:hover {
-    transform: translateY(-5px);
+    #box__add:hover, .box__button:hover {
+        transform: translateY(-5px);
+    }
+
+.box__button {
+    background-color: rgba(0, 0, 0, .7);
 }
 
 /* === Main === */
@@ -144,8 +155,12 @@ button {
 }
 
 #content__header, .content__list {
-    grid-template-columns: 1fr 2fr 3fr 2fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 3fr 2fr 2fr 2fr;
     padding: 1rem;
+}
+
+.content__btnAsp {
+    background-color: transparent;
 }
 
 /* === Footer === */
@@ -183,14 +198,8 @@ button {
 }
 
 .fa-trash {
-    padding-left: 20px;
     color: #B22222;
     cursor: pointer;
-}
-
-.fa-pencil:hover, .fa-trash:hover {
-    transition: .4s all;
-    color: #00FF7F;
 }
 
 /* --- Animation --- */

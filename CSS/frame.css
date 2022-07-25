@@ -1,0 +1,93 @@
+﻿/* --- Frame --- */
+
+#frame {
+    height: 230px;
+    width: 400px;
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #FFF;
+}
+
+#frame__header {
+    height: 55px;
+    width: 100%;
+    background-color: #FEA82F;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+#frame__title {
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+#frame__main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+#frame__warn {
+    display: flex;
+    align-items: center;
+}
+
+#frame__footer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.frame__button {
+    height: 45px;
+    width: auto;
+    padding: .5rem;
+    letter-spacing: 1px;
+    font-size: .89em;
+    border-radius: 10px;
+    transition: .3s all;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.frame__button:hover {
+    transform: translateY(-5px);
+}
+
+#frame__confirmation {
+    background-color: #32CD32;
+}
+
+.frame__exit {
+    background-color: #B22222;
+}
+
+/* --- JS Events --- */
+
+.form--hidden.visible {
+    display: flex;
+}
+
+#frame.expand {
+    animation: expand-frame .3s;
+}
+
+/* --- Animation --- */
+@keyframes expand-frame {
+    0% {
+        transform: scale(0)
+    }
+
+    100% {
+        transform: scale(1)
+    }
+}

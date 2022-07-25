@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 
 namespace Product_List.Backend.Models
 {

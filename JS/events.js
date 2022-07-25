@@ -1,30 +1,55 @@
 ﻿const objDom = {
-    formServer: document.querySelector('#form__server'),
+    backgroundPage: document.querySelector('#form__server'),
+    backgroundIncludeForm: document.querySelector('#form--hidden'),
+    backgroundEditFrame: document.querySelector('#frame--hidden'),
+
+    formIncludeProduct: document.querySelector('#form__product-include'),
+    formEditProduct: document.querySelector('#form__product-edit'),
+    //formRemoveProduct: document.querySelector('#form__product--remove'),
+
     btnAddProduct: document.querySelector('#box__add'),
-    backgroundFormAdd: document.querySelector('#form__product--hidden'),
-    formAdd: document.querySelector('#form__product'),
-    formTimes: document.querySelector('#product__times'),
-    formSubmit: document.querySelector('#product__submit'),
-    editIcon: document.querySelectorAll('.fa-pencil.edit')
+    btnShowMessageEdit: document.querySelector('#product__button_edit'),
+    btnShowMessageRemove: document.querySelector('#product__button_remove'),
+    //btnSubmitRemove: document.querySelector('#product__button__remove'),
+    btnExitFrameEdit: document.querySelector('#frame__exit-edit'),
+
+    iconTimes: document.querySelector('.fa-xmark#include'),
+
+    txtareaProductDescription: document.querySelector('.product__description'),
+
+    inputPrice: document.querySelector('.product__price'),
+
+    spanDescriptionLimit: document.querySelector('.form__description--limit'),
+    spanDescriptionLength: document.querySelector('.form__description--length'),
+
+    divMessageEdit: document.querySelector('#frame'),
+    divMessageRemove: document.querySelector('#frame')
 }
 
-/* --- Events --- */
+//objDom.btnShowMessageEdit.addEventListener('click', () => {
+//    objDom.backgroundEditFrame.classList.add('visible')
+//    objDom.divMessageEdit.classList.add('expand')
+//})
 
-objDom.editIcon.forEach((element, index) => {
-    objDom.editIcon[index].addEventListener('click', () => {
-        objDom.backgroundFormAdd.classList.add('visible')
-        objDom.formAdd.classList.add('down')
-    })
+objDom.btnShowMessageRemove.addEventListener('click', () => {
+    objDom.backgroundEditFrame.classList.add('visible')
+    objDom.divMessageRemove.classList.add('expand')
 })
 
-// -> Click
+//objDom.btnExitFrameEdit.addEventListener('click', () => {
+//    objDom.backgroundEditFrame.classList.remove('visible')
+//    objDom.divMessageEdit.classList.remove('expand')
+//})
 
-objDom.btnAddProduct.addEventListener('click', () => {
-    objDom.backgroundFormAdd.classList.add('visible')
-    objDom.formAdd.classList.add('down')
-})
+// -> Input
 
-objDom.formTimes.addEventListener('click', () => {
-    objDom.backgroundFormAdd.classList.remove('visible')
-    objDom.formAdd.classList.remove('down')
-})
+//objDom.txtareaProductDescription.forEach((element, index) => {
+//    element.addEventListener('input', () => {
+//        objDom.spanDescriptionLength[index].innerHTML = element.value.length;
+
+//        if (element.value.length >= 220)
+//            objDom.spanDescriptionLimit[index].classList.add('warn')
+//        else
+//            objDom.spanDescriptionLimit[index].classList.remove('warn')
+//    })
+//})

@@ -3,38 +3,32 @@ using System.Collections.Generic;
 using Product_List.Backend.Controls;
 using Product_List.Backend.Entity;
 
-namespace Product_List
+namespace Product__List
 {
     public partial class index : System.Web.UI.Page
     {
-        ProductControl product = new ProductControl();
-
         public Dictionary<bool, string> response = new Dictionary<bool, string>();
         public List<Product> lstProducts = new List<Product>();
-        public List<Product> lstProduct = new List<Product>();
+
+        ProductControl product = new ProductControl();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             lstProducts = product.FindAll();
-
-            lstProducts.ForEach(x => { x.Type = ToggleType(x.Type); });
+            lstProducts.ForEach(x => { x.Type = product.ToggleType(x.Type); });
         }
 
-        protected void Product__submit_Click(object sender, EventArgs e)
+        protected void SendProduct(object sender, EventArgs e)
         {
-            product.Name = Request["product-name"].ToString();
-            product.Description = Request["product-description"].ToString();
-            product.Type = Request["product-type"].ToString();
-            product.Price = Double.Parse(Request["product-price"]);
+            product.Name = product__name_include.Value;
+            product.Description = product__description_include.Value;
+            product.Type = Request["product__type_include"].ToString();
+            product.Price = Double.Parse(product__price_include.Value);
+            product.RegisDate = DateTime.Now;
 
-            response =  product.Register();
-        }
+            response = product.Register();
 
-        public string ToggleType(string type)
-        {
-            ProductType productType = (ProductType)int.Parse(type);
-
-            return productType.ToString();
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "ReturnPage", "$(document).ready(function () { location.href = location.href; });", true);
         }
     }
 }
